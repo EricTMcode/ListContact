@@ -14,6 +14,9 @@ struct ListContactApp: App {
         WindowGroup {
             ContactListView()
                 .environmentObject(listContactVM)
+                .onAppear {
+                    print(URL.documentsDirectory.path)
+                }
         }
     }
 }
