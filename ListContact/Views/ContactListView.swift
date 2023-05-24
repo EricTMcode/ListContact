@@ -15,17 +15,22 @@ struct ContactListView: View {
         NavigationStack {
             List {
                 ForEach(listContactVM.contacts) { contact in
-                    VStack(alignment: .leading) {
-                        Text(contact.name)
-                            .font(.title2)
-                            .bold()
-                        Text(contact.location)
+                    NavigationLink(value: contact) {
+                        VStack(alignment: .leading) {
+                            Text(contact.name)
+                                .font(.title2)
+                                .bold()
+                            Text(contact.location)
+                        }
                     }
                 }
                 .onDelete(perform: listContactVM.removeContact)
             }
             .listStyle(.plain)
             .navigationTitle("Contact List")
+            .navigationDestination(for: Contact.self) { contact in
+                DetailView(person: contact)
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
