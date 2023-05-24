@@ -20,7 +20,7 @@ struct DetailView: View {
             TextField("Enter a location", text: $location)
         }
         .navigationBarBackButtonHidden()
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             name = person.name
             location = person.location
@@ -32,7 +32,7 @@ struct DetailView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save") {
+                Button("Update") {
                     listContactVM.updateContact(contact: person, name: name, location: location)
                     dismiss()
                 }

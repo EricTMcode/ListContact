@@ -17,7 +17,7 @@ struct AddView: View {
         Form {
             Section("Add contact") {
                 TextField("Name*", text: $name)
-                TextField("Location*", text: $location)
+                TextField("Location", text: $location)
             }
         }
         .toolbar {
@@ -31,6 +31,7 @@ struct AddView: View {
                     listContactVM.saveContact(name: name, location: location)
                     dismiss()
                 }
+                .disabled(!(name.count >= 3) || location.isEmpty)
                 .buttonStyle(.borderedProminent)
             }
         }
