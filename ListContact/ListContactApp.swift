@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ListContactApp: App {
+    @StateObject var listContactVM = ListContactVieModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContactListView()
+                .environmentObject(listContactVM)
         }
     }
 }
