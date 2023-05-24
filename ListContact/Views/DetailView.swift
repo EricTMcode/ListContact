@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
+    @EnvironmentObject var listContactVM: ListContactVieModel
     @Environment(\.dismiss) private var dismiss
     let person: Contact
     @State private var name = ""
@@ -18,6 +19,8 @@ struct DetailView: View {
             TextField("Enter a name", text: $name)
             TextField("Enter a location", text: $location)
         }
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             name = person.name
             location = person.location
@@ -30,6 +33,7 @@ struct DetailView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
+                    listContactVM.updateContact(contact: person, name: name, location: location)
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
@@ -42,6 +46,7 @@ struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             DetailView(person: Contact.example[0])
+                .environmentObject(ListContactVieModel())
         }
     }
 }

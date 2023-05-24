@@ -28,7 +28,7 @@ struct AddView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    listContactVM.savePerson(name: name, location: location)
+                    listContactVM.saveContact(name: name, location: location)
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
