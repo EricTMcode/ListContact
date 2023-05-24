@@ -11,7 +11,8 @@ class ListContactVieModel: ObservableObject {
     @Published var contacts: [Contact] = []
     
     init() {
-        contacts = Contact.example
+//        contacts = Contact.example
+        loadData()
     }
     
     func saveContact(name: String, location: String) {
@@ -35,15 +36,26 @@ class ListContactVieModel: ObservableObject {
     
     //MARK: - DOCUMENTS DIRECTORY
     
-    let path = URL.documentsDirectory.appending(component: "contacts.json")
+    let filURL = URL.documentsDirectory.appending(component: "contacts.json")
     
     func saveData() {
         do {
             let contactsListData = try JSONEncoder().encode(contacts)
             let contactsListString = String(decoding: contactsListData, as: UTF8.self)
-            try contactsListString.write(to: path, atomically: true, encoding: .utf8)
+            try contactsListString.write(to: filURL, atomically: true, encoding: .utf8)
         } catch {
             fatalError("😡 ERROR: Could not save data \(error.localizedDescription)")
+        }
+    }
+    
+    func loadData() {
+        if FileManager().fileExists(atPath: filURL.path) {
+            do {
+                let data = try Data(contentsOf: filURL)
+                contacts = try JSONDecoder().decode([Contact].self, from: data)
+            } catch {
+                saveData()
+            }
         }
     }
 }
