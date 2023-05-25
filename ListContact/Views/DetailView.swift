@@ -15,29 +15,45 @@ struct DetailView: View {
     @State private var location = ""
     
     var body: some View {
-        Form {
-            TextField("Enter a name", text: $name)
-            TextField("Enter a location", text: $location)
-        }
-        .navigationBarBackButtonHidden()
-//        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            name = person.name
-            location = person.location
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel") {
-                    dismiss()
-                }
+        VStack {
+            if person.image != nil {
+                person.image!
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 150)
+                    .clipped()
+                    .clipShape(Circle())
+                    .shadow(radius: 3)
+            } else {
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 150)
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button("OK") {
-                    listContactVM.updateContact(contact: person, name: name, location: location)
-                    dismiss()
-                }
-                .bold()
+            Form {
+                TextField("Enter a name", text: $name)
+                TextField("Enter a location", text: $location)
             }
+            .navigationBarBackButtonHidden()
+    //        .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                name = person.name
+                location = person.location
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("OK") {
+                        listContactVM.updateContact(contact: person, name: name, location: location)
+                        dismiss()
+                    }
+                    .bold()
+                }
+        }
         }
     }
 }

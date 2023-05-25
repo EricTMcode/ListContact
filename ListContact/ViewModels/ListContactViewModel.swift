@@ -15,8 +15,8 @@ class ListContactVieModel: ObservableObject {
         loadData()
     }
     
-    func saveContact(name: String, location: String) {
-        let newContact = Contact(name: name, location: location, jpedData: nil)
+    func saveContact(name: String, location: String, jpegData: Data) {
+        let newContact = Contact(name: name, location: location, jpegData: jpegData)
         contacts.append(newContact)
         saveData()
     }

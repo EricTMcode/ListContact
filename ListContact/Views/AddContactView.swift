@@ -14,34 +14,35 @@ struct AddContactView: View {
     @State private var name = ""
     @State private var location = ""
     @State private var selectedPhoto: PhotosPickerItem?
-    @State private var inputImage: Image?
+    @State private var image: Image?
+    @State private var inputImage: UIImage?
     
     var body: some View {
         Form {
             HStack {
                 Spacer()
                 VStack {
-                    if inputImage == nil {
+                    if image == nil {
                         Image(systemName: "person.crop.circle")
                             .font(.system(size: 120))
                             .foregroundColor(.blue)
                     } else {
-                        inputImage!
+                        image!
                             .resizable()
                             .scaledToFill()
                             .frame(width: 130, height: 130)
                             .clipShape(Circle())
                             .clipped()
                     }
-                    
-                    PhotosPicker((inputImage != nil) ? "Change Picture" : "Add Picture", selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic)
+                    PhotosPicker((image != nil) ? "Change Picture" : "Add Picture", selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic)
                 }
                 .onChange(of: selectedPhoto) { newValue in
                     Task {
                         do {
                             if let data = try await newValue?.loadTransferable(type: Data.self) {
                                 if let uiImage = UIImage(data: data) {
-                                    inputImage = Image(uiImage: uiImage)
+                                    inputImage = uiImage
+                                    image = Image(uiImage: uiImage)
                                 }
                             }
                         } catch {
@@ -64,7 +65,10 @@ struct AddContactView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    listContactVM.saveContact(name: name, location: location)
+                    guard let inputImage = inputImage else { return }
+                    guard let jpegData = inputImage.jpegData(compressionQuality: 1) else { return }
+                    
+                    listContactVM.saveContact(name: name, location: location, jpegData: jpegData)
                     dismiss()
                 }
                 .disabled(!(name.count >= 3) || location.isEmpty)
