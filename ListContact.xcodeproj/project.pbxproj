@@ -14,7 +14,7 @@
 		07D7EB952A1CF2E700DFECC5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB942A1CF2E700DFECC5 /* Contact.swift */; };
 		07D7EB972A1CF3B500DFECC5 /* ListContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB962A1CF3B500DFECC5 /* ListContactViewModel.swift */; };
 		07D7EB9D2A1E274500DFECC5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB9C2A1E274500DFECC5 /* DetailView.swift */; };
-		07D7EB9F2A1E299500DFECC5 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB9E2A1E299500DFECC5 /* AddView.swift */; };
+		07D7EB9F2A1E299500DFECC5 /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB9E2A1E299500DFECC5 /* AddContactView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		07D7EB942A1CF2E700DFECC5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		07D7EB962A1CF3B500DFECC5 /* ListContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactViewModel.swift; sourceTree = "<group>"; };
 		07D7EB9C2A1E274500DFECC5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		07D7EB9E2A1E299500DFECC5 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		07D7EB9E2A1E299500DFECC5 /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				07D7EB852A1CF29B00DFECC5 /* ContactListView.swift */,
-				07D7EB9E2A1E299500DFECC5 /* AddView.swift */,
+				07D7EB9E2A1E299500DFECC5 /* AddContactView.swift */,
 				07D7EB9C2A1E274500DFECC5 /* DetailView.swift */,
 			);
 			path = Views;
@@ -175,7 +175,7 @@
 			files = (
 				07D7EB952A1CF2E700DFECC5 /* Contact.swift in Sources */,
 				07D7EB972A1CF3B500DFECC5 /* ListContactViewModel.swift in Sources */,
-				07D7EB9F2A1E299500DFECC5 /* AddView.swift in Sources */,
+				07D7EB9F2A1E299500DFECC5 /* AddContactView.swift in Sources */,
 				07D7EB862A1CF29B00DFECC5 /* ContactListView.swift in Sources */,
 				07D7EB9D2A1E274500DFECC5 /* DetailView.swift in Sources */,
 				07D7EB842A1CF29B00DFECC5 /* ListContactApp.swift in Sources */,

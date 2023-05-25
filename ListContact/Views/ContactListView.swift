@@ -16,18 +16,23 @@ struct ContactListView: View {
             List {
                 ForEach(listContactVM.contacts) { contact in
                     NavigationLink(value: contact) {
-                        VStack(alignment: .leading) {
-                            Text(contact.name)
-                                .font(.title2)
-                                .bold()
-                            Text(contact.location)
+                        HStack {
+                            Image(systemName: "person.circle")
+                                .font(.system(size: 40))
+                                .foregroundColor(.pink)
+                            VStack(alignment: .leading) {
+                                Text(contact.name)
+                                    .font(.title2)
+                                    .bold()
+                                Text(contact.location)
+                            }
                         }
                     }
                 }
                 .onDelete(perform: listContactVM.removeContact)
             }
             .listStyle(.plain)
-            .navigationTitle("Contact List")
+            .navigationTitle("Contacts")
             .navigationDestination(for: Contact.self) { contact in
                 DetailView(person: contact)
             }
@@ -42,7 +47,7 @@ struct ContactListView: View {
             }
             .sheet(isPresented: $isSheetPresented) {
                 NavigationStack {
-                    AddView()
+                    AddContactView()
                 }
             }
         }

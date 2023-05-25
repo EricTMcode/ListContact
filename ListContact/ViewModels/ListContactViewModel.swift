@@ -16,7 +16,7 @@ class ListContactVieModel: ObservableObject {
     }
     
     func saveContact(name: String, location: String) {
-        let newContact = Contact(name: name, location: location)
+        let newContact = Contact(name: name, location: location, jpedData: nil)
         contacts.append(newContact)
         saveData()
     }

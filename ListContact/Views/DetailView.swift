@@ -32,11 +32,11 @@ struct DetailView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Update") {
+                Button("OK") {
                     listContactVM.updateContact(contact: person, name: name, location: location)
                     dismiss()
                 }
-                .buttonStyle(.borderedProminent)
+                .bold()
             }
         }
     }
