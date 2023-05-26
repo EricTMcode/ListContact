@@ -36,27 +36,9 @@ struct DetailView: View {
             
             Form {
                 Section {
-                    HStack {
-                        Text("Phone")
-                        Spacer()
-                        Text("+1(268)-8110134")
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                    HStack {
-                        Text("Email")
-                        Spacer()
-                        Text("blaw@yeilmail.com")
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
-                    HStack {
-                        Text("Address")
-                        Spacer()
-                        Text("242 Wildrose River 16040 Wisconsin")
-                            .foregroundColor(.gray)
-                            .font(.callout)
-                    }
+                    SectionView(title: "Phone", info: "+1(268)-81101134")
+                    SectionView(title: "Email", info: "blaw@yeilmail.com")
+                    SectionView(title: "Address", info: "242 Wildrose River 16040 Wisconsin")
                 }
                 Section {
                     Button("Send a message") {
@@ -90,6 +72,21 @@ struct DetailView_Previews: PreviewProvider {
         NavigationStack {
             DetailView(person: Contact.example[0])
                 .environmentObject(ListContactVieModel())
+        }
+    }
+}
+
+struct SectionView: View {
+    let title: String
+    let info: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Text(info)
+                .foregroundColor(.gray)
+                .font(.callout)
         }
     }
 }
