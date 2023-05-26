@@ -30,30 +30,57 @@ struct DetailView: View {
                     .scaledToFill()
                     .frame(width: 150, height: 150)
             }
+            Text(person.name)
+                .font(.title)
+                .fontWeight(.medium)
+            
             Form {
-                TextField("Enter a name", text: $name)
-                TextField("Enter a location", text: $location)
+                Section {
+                    HStack {
+                        Text("Phone")
+                        Spacer()
+                        Text("+1(268)-8110134")
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                    }
+                    HStack {
+                        Text("Email")
+                        Spacer()
+                        Text("blaw@yeilmail.com")
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                    }
+                    HStack {
+                        Text("Address")
+                        Spacer()
+                        Text("242 Wildrose River 16040 Wisconsin")
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                    }
+                }
+                Section {
+                    Button("Send a message") {
+                        print("Send a message")
+                    }
+                    
+                    Button("Call") {
+                        print("Call")
+                    }
+                }
+                .multilineTextAlignment(.trailing)
             }
-            .navigationBarBackButtonHidden()
-    //        .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 name = person.name
                 location = person.location
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("OK") {
+                    Button("Edit") {
                         listContactVM.updateContact(contact: person, name: name, location: location)
                         dismiss()
                     }
-                    .bold()
                 }
-        }
+            }
         }
     }
 }

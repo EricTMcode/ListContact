@@ -53,6 +53,7 @@ struct ContactListView_Previews: PreviewProvider {
 
 struct ContactRow: View {
     let contact: Contact
+    
     var body: some View {
         HStack {
             if contact.image != nil {
