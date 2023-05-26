@@ -16,17 +16,7 @@ struct ContactListView: View {
             List {
                 ForEach(listContactVM.contacts) { contact in
                     NavigationLink(value: contact) {
-                        HStack {
-                            Image(systemName: "person.circle")
-                                .font(.system(size: 40))
-                                .foregroundColor(.pink)
-                            VStack(alignment: .leading) {
-                                Text(contact.name)
-                                    .font(.title2)
-                                    .bold()
-                                Text(contact.location)
-                            }
-                        }
+                        ContactRow(contact: contact)
                     }
                 }
                 .onDelete(perform: listContactVM.removeContact)
@@ -58,5 +48,34 @@ struct ContactListView_Previews: PreviewProvider {
     static var previews: some View {
         ContactListView()
             .environmentObject(ListContactVieModel())
+    }
+}
+
+struct ContactRow: View {
+    let contact: Contact
+    var body: some View {
+        HStack {
+            if contact.image != nil {
+                contact.image!
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 60, height: 60)
+                    .clipped()
+                    .clipShape(Circle())
+                    .shadow(radius: 1)
+                
+            } else {
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 60, height: 60)
+                    .foregroundColor(.pink)
+            }
+            VStack(alignment: .leading) {
+                Text(contact.name)
+                    .font(.system(size: 21, weight: .medium, design: .default))
+                Text(contact.location)
+            }
+        }
     }
 }

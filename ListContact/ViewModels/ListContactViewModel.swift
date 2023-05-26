@@ -37,7 +37,7 @@ class ListContactVieModel: ObservableObject {
     //MARK: - DOCUMENTS DIRECTORY
     
     let filURL = URL.documentsDirectory.appending(component: "contacts.json")
-    
+
     func saveData() {
         do {
             let contactsListData = try JSONEncoder().encode(contacts)
