@@ -8,24 +8,30 @@
 import SwiftUI
 
 struct ContactListView: View {
-    @EnvironmentObject var listContactVM: ListContactVieModel
+    @EnvironmentObject var listContactVM: ListContactViewModel
     @State private var isSheetPresented = false
     
     var body: some View {
         NavigationStack {
             List {
                 ForEach(listContactVM.contacts) { contact in
-                    NavigationLink(value: contact) {
-                        ContactRow(contact: contact)
+                    HStack {
+                        Image(uiImage: contact.image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.6), radius: 2, x: 2, y: 2)
+                        VStack(alignment: .leading) {
+                            Text(contact.name)
+                                .font(.system(size: 21, weight: .medium, design: .default))
+                            Text(contact.location)
+                        }
                     }
                 }
-                .onDelete(perform: listContactVM.removeContact)
             }
             .listStyle(.plain)
             .navigationTitle("Contacts")
-            .navigationDestination(for: Contact.self) { contact in
-                DetailView(person: contact)
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -44,39 +50,9 @@ struct ContactListView: View {
     }
 }
 
-struct ContactRow: View {
-    let contact: Contact
-    
-    var body: some View {
-        HStack {
-            if contact.image != nil {
-                contact.image!
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 60, height: 60)
-                    .clipped()
-                    .clipShape(Circle())
-                    .shadow(radius: 1)
-                
-            } else {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 60, height: 60)
-                    .foregroundColor(.pink)
-            }
-            VStack(alignment: .leading) {
-                Text(contact.name)
-                    .font(.system(size: 21, weight: .medium, design: .default))
-                Text(contact.location)
-            }
-        }
-    }
-}
-
 struct ContactListView_Previews: PreviewProvider {
     static var previews: some View {
         ContactListView()
-            .environmentObject(ListContactVieModel())
+            .environmentObject(ListContactViewModel())
     }
 }
