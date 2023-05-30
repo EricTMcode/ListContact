@@ -44,13 +44,6 @@ struct ContactListView: View {
     }
 }
 
-struct ContactListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactListView()
-            .environmentObject(ListContactVieModel())
-    }
-}
-
 struct ContactRow: View {
     let contact: Contact
     
@@ -78,5 +71,12 @@ struct ContactRow: View {
                 Text(contact.location)
             }
         }
+    }
+}
+
+struct ContactListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContactListView()
+            .environmentObject(ListContactVieModel())
     }
 }

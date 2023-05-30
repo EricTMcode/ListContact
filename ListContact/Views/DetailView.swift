@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    @EnvironmentObject var listContactVM: ListContactVieModel
-    @Environment(\.dismiss) private var dismiss
     let person: Contact
-    @State private var name = ""
-    @State private var location = ""
     
     var body: some View {
         VStack {
@@ -51,27 +47,12 @@ struct DetailView: View {
                 }
                 .multilineTextAlignment(.trailing)
             }
-            .onAppear {
-                name = person.name
-                location = person.location
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Edit") {
-                        listContactVM.updateContact(contact: person, name: name, location: location)
-                        dismiss()
                     }
                 }
             }
-        }
-    }
-}
-
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            DetailView(person: Contact.example[0])
-                .environmentObject(ListContactVieModel())
         }
     }
 }
@@ -90,3 +71,13 @@ struct SectionView: View {
         }
     }
 }
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            DetailView(person: Contact.example[0])
+        }
+    }
+}
+
+

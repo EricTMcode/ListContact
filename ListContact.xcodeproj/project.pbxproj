@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077DAFCD2A26295000901150 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DAFCC2A26295000901150 /* FileManager+Extension.swift */; };
 		07D7EB842A1CF29B00DFECC5 /* ListContactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB832A1CF29B00DFECC5 /* ListContactApp.swift */; };
 		07D7EB862A1CF29B00DFECC5 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB852A1CF29B00DFECC5 /* ContactListView.swift */; };
 		07D7EB882A1CF29D00DFECC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D7EB872A1CF29D00DFECC5 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		077DAFCC2A26295000901150 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		07D7EB802A1CF29B00DFECC5 /* ListContact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListContact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D7EB832A1CF29B00DFECC5 /* ListContactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactApp.swift; sourceTree = "<group>"; };
 		07D7EB852A1CF29B00DFECC5 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		077DAFCB2A26293300901150 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				077DAFCC2A26295000901150 /* FileManager+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		07D7EB772A1CF29B00DFECC5 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +73,7 @@
 				07D7EB932A1CF2CF00DFECC5 /* Views */,
 				07D7EB922A1CF2CA00DFECC5 /* ViewModels */,
 				07D7EB912A1CF2C600DFECC5 /* Models */,
+				077DAFCB2A26293300901150 /* Extensions */,
 				07D7EB872A1CF29D00DFECC5 /* Assets.xcassets */,
 				07D7EB892A1CF29D00DFECC5 /* Preview Content */,
 			);
@@ -178,6 +189,7 @@
 				07D7EB9F2A1E299500DFECC5 /* AddContactView.swift in Sources */,
 				07D7EB862A1CF29B00DFECC5 /* ContactListView.swift in Sources */,
 				07D7EB9D2A1E274500DFECC5 /* DetailView.swift in Sources */,
+				077DAFCD2A26295000901150 /* FileManager+Extension.swift in Sources */,
 				07D7EB842A1CF29B00DFECC5 /* ListContactApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
