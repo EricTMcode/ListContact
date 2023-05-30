@@ -12,7 +12,7 @@ class ListContactViewModel: ObservableObject {
     
     init() {
 //        contacts = Contact.example
-        loadContacts()
+//        loadContacts()
     }
     
     func addContact(_ name: String, location: String, image: UIImage) {

@@ -30,8 +30,14 @@ struct ContactListView: View {
                     }
                 }
             }
+            .task {
+                if FileManager().docExist(named: fileName) {
+                    listContactVM.loadContacts()
+                }
+            }
             .listStyle(.plain)
             .navigationTitle("Contacts")
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
