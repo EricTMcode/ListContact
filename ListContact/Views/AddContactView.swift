@@ -9,8 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct AddContactView: View {
-    @EnvironmentObject var listContactVM: ListContactVieModel
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var ContactListVM: ListContactViewModel
+    @Environment(\.dismiss) private var dismiss
     @State private var name = ""
     @State private var location = ""
     @State private var selectedPhoto: PhotosPickerItem?
@@ -64,15 +64,12 @@ struct AddContactView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save") {
-                    guard let inputImage = inputImage else { return }
-                    guard let jpegData = inputImage.jpegData(compressionQuality: 1) else { return }
-                    
-                    listContactVM.saveContact(name: name, location: location, jpegData: jpegData)
+                Button {
+                    ContactListVM.addContact(name, location: location, image: inputImage ?? UIImage(systemName: "person.fill")!)
                     dismiss()
+                } label: {
+                    Text("Save")
                 }
-                .disabled(!(name.count >= 3) || location.isEmpty)
-                .buttonStyle(.borderedProminent)
             }
         }
     }
@@ -82,7 +79,7 @@ struct AddContactView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             AddContactView()
-                .environmentObject(ListContactVieModel())
+                .environmentObject(ListContactViewModel())
         }
     }
 }
