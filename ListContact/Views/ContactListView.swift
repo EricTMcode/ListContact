@@ -15,17 +15,19 @@ struct ContactListView: View {
         NavigationStack {
             List {
                 ForEach(listContactVM.contacts) { contact in
-                    HStack {
-                        Image(uiImage: contact.image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 60, height: 60)
-                            .clipShape(Circle())
-                            .shadow(color: .black.opacity(0.6), radius: 2, x: 2, y: 2)
-                        VStack(alignment: .leading) {
-                            Text(contact.name)
-                                .font(.system(size: 21, weight: .medium, design: .default))
-                            Text(contact.location)
+                    NavigationLink(value: contact) {
+                        HStack {
+                            Image(uiImage: contact.image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                .shadow(color: .black.opacity(0.6), radius: 2, x: 2, y: 2)
+                            VStack(alignment: .leading) {
+                                Text(contact.name)
+                                    .font(.system(size: 21, weight: .medium, design: .default))
+                                Text(contact.location)
+                            }
                         }
                     }
                 }
@@ -37,6 +39,9 @@ struct ContactListView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Contacts")
+            .navigationDestination(for: Contact.self) { contact in
+                DetailView(person: contact)
+            }
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
