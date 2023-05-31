@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		077DAFCD2A26295000901150 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DAFCC2A26295000901150 /* FileManager+Extension.swift */; };
+		077DAFCF2A27741800901150 /* ContactError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DAFCE2A27741800901150 /* ContactError.swift */; };
 		07D7EB842A1CF29B00DFECC5 /* ListContactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB832A1CF29B00DFECC5 /* ListContactApp.swift */; };
 		07D7EB862A1CF29B00DFECC5 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7EB852A1CF29B00DFECC5 /* ContactListView.swift */; };
 		07D7EB882A1CF29D00DFECC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D7EB872A1CF29D00DFECC5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		077DAFCC2A26295000901150 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		077DAFCE2A27741800901150 /* ContactError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactError.swift; sourceTree = "<group>"; };
 		07D7EB802A1CF29B00DFECC5 /* ListContact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListContact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D7EB832A1CF29B00DFECC5 /* ListContactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactApp.swift; sourceTree = "<group>"; };
 		07D7EB852A1CF29B00DFECC5 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				07D7EB942A1CF2E700DFECC5 /* Contact.swift */,
+				077DAFCE2A27741800901150 /* ContactError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				07D7EB952A1CF2E700DFECC5 /* Contact.swift in Sources */,
 				07D7EB972A1CF3B500DFECC5 /* ListContactViewModel.swift in Sources */,
 				07D7EB9F2A1E299500DFECC5 /* AddContactView.swift in Sources */,
+				077DAFCF2A27741800901150 /* ContactError.swift in Sources */,
 				07D7EB862A1CF29B00DFECC5 /* ContactListView.swift in Sources */,
 				07D7EB9D2A1E274500DFECC5 /* DetailView.swift in Sources */,
 				077DAFCD2A26295000901150 /* FileManager+Extension.swift in Sources */,

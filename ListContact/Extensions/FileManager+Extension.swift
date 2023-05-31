@@ -23,7 +23,7 @@ extension FileManager {
         do {
             try contents.write(to: url, atomically: true, encoding: .utf8)
         } catch {
-            fatalError("Oups")
+            throw ContactError.saveError
         }
     }
     
@@ -32,7 +32,7 @@ extension FileManager {
         do {
             return try Data(contentsOf: url)
         } catch {
-            fatalError("Oups")
+            throw ContactError.readError
         }
     }
     
@@ -43,10 +43,10 @@ extension FileManager {
             do {
                 try data.write(to: imageURL)
             } catch {
-                fatalError("Oups")
+                throw ContactError.saveImageError
             }
         } else {
-            fatalError("Oups")
+            throw ContactError.saveImageError
         }
     }
     
@@ -57,10 +57,10 @@ extension FileManager {
             if let image = UIImage(data: imageData) {
                 return image
             } else {
-                fatalError("Oups")
+                throw ContactError.readImageError
             }
         } catch {
-            fatalError("Oups")
+            return UIImage(systemName: "photo.fill")!
         }
     }
 }
