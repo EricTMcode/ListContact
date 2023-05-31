@@ -16,10 +16,10 @@ class ListContactViewModel: ObservableObject {
     @Published var image: Image?
     @Published var inputImage: UIImage?
     
-    init() {
-//        contacts = Contact.example
-//        loadContacts()
+    var buttonDisabled: Bool {
+        name.count < 3
     }
+
     
     func addContact(name: String, location: String, image: UIImage) {
         let newContact = Contact(name: name, location: location)

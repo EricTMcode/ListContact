@@ -65,6 +65,7 @@ struct AddContactView: View {
                 } label: {
                     Text("Save")
                 }
+                .disabled(ContactListVM.buttonDisabled)
             }
         }
     }
