@@ -6,16 +6,22 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 class ListContactViewModel: ObservableObject {
     @Published var contacts: [Contact] = []
+    @Published var name = ""
+    @Published var location = ""
+    @Published var selectedPhoto: PhotosPickerItem?
+    @Published var image: Image?
+    @Published var inputImage: UIImage?
     
     init() {
 //        contacts = Contact.example
 //        loadContacts()
     }
     
-    func addContact(_ name: String, location: String, image: UIImage) {
+    func addContact(name: String, location: String, image: UIImage) {
         let newContact = Contact(name: name, location: location)
         do {
             try FileManager().saveImage("\(newContact.id)", image: image)
