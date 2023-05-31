@@ -15,6 +15,8 @@ class ListContactViewModel: ObservableObject {
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var image: Image?
     @Published var inputImage: UIImage?
+    @Published var showFileAlert = false
+    @Published var appError: ContactError.ErrorType?
     
     var buttonDisabled: Bool {
         name.count < 3
@@ -28,7 +30,8 @@ class ListContactViewModel: ObservableObject {
             contacts.append(newContact)
             saveContacts()
         } catch {
-            fatalError("Oups")
+            showFileAlert = true
+            appError = ContactError.ErrorType(error: error as! ContactError)
         }
     }
     
@@ -54,10 +57,12 @@ class ListContactViewModel: ObservableObject {
             do {
                 try FileManager().saveDocument(contents: jsonString)
             } catch {
-                fatalError("Oups")
+                showFileAlert = true
+                appError = ContactError.ErrorType(error: error as! ContactError)
             }
         } catch {
-            fatalError("Oups")
+            showFileAlert = true
+            appError = ContactError.ErrorType(error: .encodingError)
         }
     }
     
@@ -68,10 +73,12 @@ class ListContactViewModel: ObservableObject {
             do {
                 contacts = try decoder.decode([Contact].self, from: data)
             } catch {
-                fatalError("Oups")
+                showFileAlert = true
+                appError = ContactError.ErrorType(error: .decodingError)
             }
         } catch {
-            fatalError("Oups")
+            showFileAlert = true
+            appError = ContactError.ErrorType(error: error as! ContactError)
         }
     }
 }

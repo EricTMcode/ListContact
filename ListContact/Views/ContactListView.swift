@@ -43,7 +43,11 @@ struct ContactListView: View {
             .navigationDestination(for: Contact.self) { contact in
                 DetailView(person: contact)
             }
-            
+            .alert("Error", isPresented: $listContactVM.showFileAlert, presenting: listContactVM.appError, actions: { contactError in
+                contactError.button
+            }, message: { contactError in
+                Text(contactError.message)
+            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
