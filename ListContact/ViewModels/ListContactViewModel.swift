@@ -32,6 +32,12 @@ class ListContactViewModel: ObservableObject {
         }
     }
     
+    func reset() {
+        image = nil
+        name = ""
+        location = ""
+    }
+    
     //MARK: - DOCUMENTS DIRECTORY
     
     func saveContacts() {
@@ -39,6 +45,7 @@ class ListContactViewModel: ObservableObject {
         do {
             let data = try encoder.encode(contacts)
             let jsonString = String(decoding: data, as: UTF8.self)
+            reset()
             do {
                 try FileManager().saveDocument(contents: jsonString)
             } catch {
