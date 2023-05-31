@@ -31,6 +31,7 @@ struct ContactListView: View {
                         }
                     }
                 }
+                .onDelete(perform: listContactVM.delete)
             }
             .task {
                 if FileManager().docExist(named: fileName) {

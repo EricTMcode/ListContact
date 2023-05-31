@@ -12,13 +12,13 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: person.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 150, height: 150)
-                .clipped()
-                .clipShape(Circle())
-                .shadow(radius: 3)
+//            Image(uiImage: person.image)
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 150, height: 150)
+//                .clipped()
+//                .clipShape(Circle())
+//                .shadow(radius: 3)
             
             Text(person.name)
                 .font(.title)

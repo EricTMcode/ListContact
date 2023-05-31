@@ -38,6 +38,11 @@ class ListContactViewModel: ObservableObject {
         location = ""
     }
     
+    func delete(indexSet: IndexSet) {
+        contacts.remove(atOffsets: indexSet)
+        saveContacts()
+    }
+    
     //MARK: - DOCUMENTS DIRECTORY
     
     func saveContacts() {
