@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     let person: Contact
+    @State private var isSheetPresented = false
     
     var body: some View {
         VStack {
@@ -18,7 +19,13 @@ struct DetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Edit") {
+                    isSheetPresented.toggle()
                 }
+            }
+        }
+        .fullScreenCover(isPresented: $isSheetPresented) {
+            NavigationStack {
+                EditView(contact: person)
             }
         }
     }

@@ -10,6 +10,7 @@ import PhotosUI
 
 class ListContactViewModel: ObservableObject {
     @Published var contacts: [Contact] = []
+    @Published var showPicker = false
     @Published var name = ""
     @Published var location = ""
     @Published var selectedPhoto: PhotosPickerItem?
@@ -17,6 +18,7 @@ class ListContactViewModel: ObservableObject {
     @Published var inputImage: UIImage?
     @Published var showFileAlert = false
     @Published var appError: ContactError.ErrorType?
+    @Published var selectedContact: Contact?
     
     var buttonDisabled: Bool {
         name.count < 3

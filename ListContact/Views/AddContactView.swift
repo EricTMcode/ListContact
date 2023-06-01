@@ -12,6 +12,7 @@ struct AddContactView: View {
     @EnvironmentObject var ContactListVM: ListContactViewModel
     @Environment(\.dismiss) private var dismiss
     
+    
     var body: some View {
         Form {
             HStack {
