@@ -16,19 +16,7 @@ struct ContactListView: View {
             List {
                 ForEach(listContactVM.contacts) { contact in
                     NavigationLink(value: contact) {
-                        HStack {
-                            Image(uiImage: contact.image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60)
-                                .clipShape(Circle())
-                                .shadow(color: .black.opacity(0.6), radius: 2, x: 2, y: 2)
-                            VStack(alignment: .leading) {
-                                Text(contact.name)
-                                    .font(.system(size: 21, weight: .medium, design: .default))
-                                Text(contact.location)
-                            }
-                        }
+                        ContactRow(contact: contact)
                     }
                 }
                 .onDelete(perform: listContactVM.delete)
@@ -72,3 +60,5 @@ struct ContactListView_Previews: PreviewProvider {
             .environmentObject(ListContactViewModel())
     }
 }
+
+
