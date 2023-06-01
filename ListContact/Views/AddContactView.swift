@@ -52,6 +52,8 @@ struct AddContactView: View {
                 TextField("Location", text: $ContactListVM.location)
             }
         }
+        .navigationTitle("Add Contact")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Cancel") {
