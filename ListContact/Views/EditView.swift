@@ -19,11 +19,18 @@ struct EditView: View {
             Section("Contact informations") {
                 TextField("Name*", text: $contact.name)
                 TextField("Location", text: $contact.location)
+                Text(contact.id.uuidString)
             }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Cancel") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save") {
+                    contactListVM.updateSelected()
                     dismiss()
                 }
             }

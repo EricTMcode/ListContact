@@ -37,6 +37,15 @@ class ListContactViewModel: ObservableObject {
         }
     }
     
+    func updateSelected() {
+        if let index = contacts.firstIndex(where: {$0.id == selectedContact?.id}) {
+            contacts[index].name = name
+            contacts[index].location = location
+            saveContacts()
+            reset()
+        }
+    }
+    
     func reset() {
         image = nil
         name = ""
