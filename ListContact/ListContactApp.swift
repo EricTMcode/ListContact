@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct ListContactApp: App {
-    @StateObject var listContactVM = ListContactViewModel()
+    @StateObject var listContactVM = ContactListViewModel()
     var body: some Scene {
         WindowGroup {
             ContactListView()

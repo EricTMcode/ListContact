@@ -1,5 +1,5 @@
 //
-//  ListContactViewModel.swift
+//  ContactListViewModel.swift
 //  ListContact
 //
 //  Created by Eric on 23/05/2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-class ListContactViewModel: ObservableObject {
+class ContactListViewModel: ObservableObject {
     @Published var contacts: [Contact] = []
     @Published var showPicker = false
     @Published var name = ""
@@ -23,7 +23,7 @@ class ListContactViewModel: ObservableObject {
     var buttonDisabled: Bool {
         name.count < 3
     }
-
+    
     
     func addContact(name: String, location: String, image: UIImage) {
         let newContact = Contact(name: name, location: location)

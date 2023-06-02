@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct AddContactView: View {
-    @EnvironmentObject var ContactListVM: ListContactViewModel
+    @EnvironmentObject var vm: ContactListViewModel
     @Environment(\.dismiss) private var dismiss
     
     
@@ -18,27 +18,27 @@ struct AddContactView: View {
             HStack {
                 Spacer()
                 VStack {
-                    if ContactListVM.image == nil {
+                    if vm.image == nil {
                         Image(systemName: "person.crop.circle")
                             .font(.system(size: 120))
                             .foregroundColor(.blue)
                     } else {
-                        ContactListVM.image!
+                        vm.image!
                             .resizable()
                             .scaledToFill()
                             .frame(width: 130, height: 130)
                             .clipShape(Circle())
                             .clipped()
                     }
-                    PhotosPicker((ContactListVM.image != nil) ? "Change Picture" : "Add Picture", selection: $ContactListVM.selectedPhoto, matching: .images, preferredItemEncoding: .automatic)
+                    PhotosPicker((vm.image != nil) ? "Change Picture" : "Add Picture", selection: $vm.selectedPhoto, matching: .images, preferredItemEncoding: .automatic)
                 }
-                .onChange(of: ContactListVM.selectedPhoto) { newValue in
+                .onChange(of: vm.selectedPhoto) { newValue in
                     Task {
                         do {
                             if let data = try await newValue?.loadTransferable(type: Data.self) {
                                 if let uiImage = UIImage(data: data) {
-                                    ContactListVM.inputImage = uiImage
-                                    ContactListVM.image = Image(uiImage: uiImage)
+                                    vm.inputImage = uiImage
+                                    vm.image = Image(uiImage: uiImage)
                                 }
                             }
                         } catch {
@@ -49,8 +49,8 @@ struct AddContactView: View {
                 Spacer()
             }
             Section("Add contact") {
-                TextField("Name*", text: $ContactListVM.name)
-                TextField("Location", text: $ContactListVM.location)
+                TextField("Name*", text: $vm.name)
+                TextField("Location", text: $vm.location)
             }
         }
         .navigationTitle("Add Contact")
@@ -63,12 +63,12 @@ struct AddContactView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    ContactListVM.addContact(name: ContactListVM.name, location: ContactListVM.location, image: ContactListVM.inputImage ?? UIImage(systemName: "person.fill")!)
+                    vm.addContact(name: vm.name, location: vm.location, image: vm.inputImage ?? UIImage(systemName: "person.fill")!)
                     dismiss()
                 } label: {
                     Text("Save")
                 }
-                .disabled(ContactListVM.buttonDisabled)
+                .disabled(vm.buttonDisabled)
             }
         }
     }
@@ -78,7 +78,7 @@ struct AddContactView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             AddContactView()
-                .environmentObject(ListContactViewModel())
+                .environmentObject(ContactListViewModel())
         }
     }
 }

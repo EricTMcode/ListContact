@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct EditView: View {
-    @EnvironmentObject var contactListVM: ListContactViewModel
+    @EnvironmentObject var vm: ContactListViewModel
     @State var contact: Contact
     @Environment(\.dismiss) private var dismiss
     
@@ -30,7 +30,7 @@ struct EditView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    contactListVM.updateSelected()
+                    vm.updateSelected()
                     dismiss()
                 }
             }
@@ -41,6 +41,6 @@ struct EditView: View {
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         EditView(contact: Contact.example[0])
-            .environmentObject(ListContactViewModel())
+            .environmentObject(ContactListViewModel())
     }
 }

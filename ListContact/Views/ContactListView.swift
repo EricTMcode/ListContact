@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ContactListView: View {
-    @EnvironmentObject var listContactVM: ListContactViewModel
+    @EnvironmentObject var vm: ContactListViewModel
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(listContactVM.contacts) { contact in
+                ForEach(vm.contacts) { contact in
                     NavigationLink(value: contact) {
                         ContactRow(contact: contact)
                     }
                 }
-                .onDelete(perform: listContactVM.delete)
+                .onDelete(perform: vm.delete)
             }
             .task {
                 if FileManager().docExist(named: fileName) {
-                    listContactVM.loadContacts()
+                    vm.loadContacts()
                 }
             }
             .listStyle(.plain)
@@ -30,7 +30,7 @@ struct ContactListView: View {
             .navigationDestination(for: Contact.self) { contact in
                 DetailView(person: contact)
             }
-            .alert("Error", isPresented: $listContactVM.showFileAlert, presenting: listContactVM.appError) { contactError in
+            .alert("Error", isPresented: $vm.showFileAlert, presenting: vm.appError) { contactError in
                 contactError.button
             } message: { contactError in
                 Text(contactError.message)
@@ -38,13 +38,13 @@ struct ContactListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        listContactVM.showPicker.toggle()
+                        vm.showPicker.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $listContactVM.showPicker) {
+            .sheet(isPresented: $vm.showPicker) {
                 NavigationStack {
                     AddContactView()
                 }
@@ -56,7 +56,7 @@ struct ContactListView: View {
 struct ContactListView_Previews: PreviewProvider {
     static var previews: some View {
         ContactListView()
-            .environmentObject(ListContactViewModel())
+            .environmentObject(ContactListViewModel())
     }
 }
 
